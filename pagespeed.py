@@ -1,6 +1,6 @@
 import requests
 import config
-from response import *
+from response import page_speed_response
 
 api_key = config.key
 url = config.url
@@ -14,13 +14,12 @@ params = {
 }
 endpoint = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed"
 
-def page_speed(params):
+def request(params):
     response = requests.get(endpoint, params=params)
-    data = response.json()
-    seo_audit(data)
-    best_practices(data)
+    return response.json()
 
-page_speed(params)
+
+page_speed_response(request(params))
 
 
 
